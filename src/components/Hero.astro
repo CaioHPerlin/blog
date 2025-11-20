@@ -1,0 +1,21 @@
+---
+interface Props {
+  page?: string;
+}
+
+const { page } = Astro.props;
+---
+
+<div
+  class="text-center container sm:text-left px-5 box-border w-screen pt-10 pb-8 lg:pt-15 sm:pb-5 select-none flex flex-col justify-between mx-auto h-2/3 sm:flex-row items-center"
+>
+  <div>
+    <h2 class="font-lighter text-lg lg:text-xl xl:text-2xl opacity-75">
+      C. H. Perlin's Unnecessary Blog
+    </h2>
+    <h1 class="text-6xl lg:text-7xl xl:text-8xl">The P.U.B.</h1>
+  </div>
+  <div class="flex h-full sm:self-end">
+    <h3 class="opacity-75 text-5xl lg:text-6xl">{page}</h3>
+  </div>
+</div>
