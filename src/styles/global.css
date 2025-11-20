@@ -2,6 +2,7 @@
 
 @theme {
   --font-serif: "Source Serif Pro", "serif";
+  --font-sans: "Source Sans Pro", "sans-serif";
   --sb-track-color: var(--color-gray-800);
   --sb-thumb-color: var(--color-gray-500);
   --sb-size: 6px;

@@ -1,19 +1,19 @@
 ---
 import Footer from "@/components/Footer.astro";
-import Hero from "@/components/Hero.astro";
+import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 interface Props {
-  page?: string;
+  page: string;
 }
 
 const { page } = Astro.props;
 ---
 
 <BaseLayout>
-  <Hero page={page} />
+  <Header page={page} />
   <div
-    class="bg-gray-800 border-t border-b border-gray-700 min-h-60 w-11/12 sm:w-6/5 container mx-auto leading-8 pt-10 pb-20 text-lg"
+    class="font-sans bg-gray-800 grow border-t border-b border-gray-700 min-h-60 w-11/12 sm:w-6/5 container mx-auto leading-8 pt-10 pb-20 text-lg tracking-wide"
   >
     <slot />
   </div>
