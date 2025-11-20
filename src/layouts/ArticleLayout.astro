@@ -1,0 +1,21 @@
+---
+import Footer from "@/components/Footer.astro";
+import Hero from "@/components/Hero.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+  page?: string;
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout>
+  <Hero page={page} />
+  <div
+    class="bg-gray-800 border-t border-b border-gray-700 min-h-60 w-11/12 sm:w-6/5 container mx-auto leading-8 pt-10 pb-20 text-lg"
+  >
+    <slot />
+  </div>
+  <Footer />
+</BaseLayout>
