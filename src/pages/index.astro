@@ -1,15 +1,25 @@
 ---
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
-import { getAllPosts } from "@/service/posts.service";
+import { getCollection } from "astro:content";
+import {
+  organizePostsByHeading,
+  sortPostsByPublishedAt,
+} from "@/utils/posts.utils";
 
-const posts = await getAllPosts();
+const posts = (await getCollection("blog")).sort(sortPostsByPublishedAt);
+const postsByHeading = organizePostsByHeading(
+  posts,  ["monthLong", "year"],
+  ", "
+);
 ---
 
 <ArticleLayout page="Sumário">
   <div class="font-serif tracking-wider text-2xl">
-    <h2 class="opacity-75">2025</h2>
+    {Object.keys(postsByHeading).map((k) => 
+    <h2 class="opacity-75">{k}</h2>
     <div class="flex flex-col">
-      {posts.map((post) => <a href={post.id}>- {post.data.title}</a>)}
+      {postsByHeading[k].map((p) => <a href={p.id}>- {p.data.title}</a>)}
     </div>
+    )}
   </div>
 </ArticleLayout>
