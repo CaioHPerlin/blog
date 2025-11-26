@@ -4,7 +4,7 @@ import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 interface Props {
-  page: string;
+  page?: string;
 }
 
 const { page } = Astro.props;
@@ -12,10 +12,8 @@ const { page } = Astro.props;
 
 <BaseLayout>
   <Header page={page} />
-  <div class="">
-    <h3 class="">
-      {page}
-    </h3>
+  <div class="bg-gray-900 px-4 py-5 min-h-screen">
+    {page && <h3 class="text-center text-3xl font-serif pb-5">{page}</h3>}
     <slot />
   </div>
   <Footer />
