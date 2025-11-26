@@ -1,6 +1,30 @@
-<div class="">
-  <div>
-    <h2 class="">C. H. Perlin's Unnecessary Blog</h2>
-    <h1 class="">The P.U.B.</h1>
+---
+const socials: Record<string, string> = {
+  Youtube: "https://www.youtube.com/@caiohperlin",
+  LinkedIn: "https://www.linkedin.com/in/caiohperlin",
+  GitHub: "https://github.com/caiohperlin",
+};
+---
+
+<div class="font-serif py-20">
+  <div class="w-fit flex flex-col items-center mx-auto">
+    <h2 class="text-[1.125rem] text-gray-200">
+      C. H. Perlin's Unnecessary Blog
+    </h2>
+    <h1 class="text-6xl w-fit">The P.U.B</h1>
   </div>
+  <ul class="flex w-full justify-center mt-3">
+    {
+      Object.keys(socials).map((k) => (
+        <li class="border-l border-l-gray-200 first:border-0 px-2">
+          <a
+            class="underline underline-offset-3 text-gray-200"
+            href={socials[k]}
+          >
+            {k}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </div>

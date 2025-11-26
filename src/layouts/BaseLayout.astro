@@ -11,5 +11,9 @@ import "@/styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class=""></body>
+  <body class="bg-gray-950 text-neutral-0 min-h-screen flex flex-col">
+    <div class="container px-4 mx-auto">
+      <slot />
+    </div>
+  </body>
 </html>
