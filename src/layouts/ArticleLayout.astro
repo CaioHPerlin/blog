@@ -12,9 +12,10 @@ const { page } = Astro.props;
 
 <BaseLayout>
   <Header page={page} />
-  <div
-    class="font-sans bg-gray-800 grow border-t border-b border-gray-700 min-h-60 w-11/12 sm:w-6/5 container mx-auto leading-8 pt-10 pb-20 text-lg tracking-wide"
-  >
+  <div class="">
+    <h3 class="">
+      {page}
+    </h3>
     <slot />
   </div>
   <Footer />

@@ -14,9 +14,9 @@ const postsByHeading = organizePostsByHeading(
 ---
 
 <ArticleLayout page="Sumário">
-  <div class="font-serif tracking-wider text-2xl">
+  <div class="">
     {Object.keys(postsByHeading).map((k) => 
-    <h2 class="opacity-75">{k}</h2>
+    <h2 class="">{k}</h2>
     <div class="flex flex-col">
       {postsByHeading[k].map((p) => <a href={p.id}>- {p.data.title}</a>)}
     </div>
