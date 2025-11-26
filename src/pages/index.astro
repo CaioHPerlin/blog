@@ -2,12 +2,12 @@
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import { getCollection } from "astro:content";
 import {
-  organizePostsByHeading,
+  organizePostsByDate,
   sortPostsByPublishedAt,
 } from "@/utils/posts.utils";
 
 const posts = (await getCollection("blog")).sort(sortPostsByPublishedAt);
-const postsByHeading = organizePostsByHeading(
+const postsByHeading = organizePostsByDate(
   posts,
   ["day", "monthLong", "year"],
   " "
