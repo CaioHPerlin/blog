@@ -1,5 +1,5 @@
 ---
-title: "Como Configurar um Ambiente de Desenvolvimento Moderno para Produtividade com Arch Linux e Hyprland"
+title: "Configurando um Ambiente Arch Linux para Produtividade"
 publishedAt: 2025-11-20
 tags:
   - "introdução"
