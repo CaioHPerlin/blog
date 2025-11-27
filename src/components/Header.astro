@@ -1,21 +1,42 @@
 ---
-interface Props {
-  page?: string;
+interface Social {
+  name: string;
+  url: string;
 }
 
-const { page } = Astro.props;
+const BLOG_TITLE = "C. H. Perlin's Unnecessary Blog";
+const BLOG_ACRONYM = "The P.U.B";
+
+const SOCIALS: Social[] = [
+  { name: "YouTube", url: "https://www.youtube.com/@caiohperlin" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/caiohperlin" },
+  { name: "GitHub", url: "https://github.com/caiohperlin" },
+];
 ---
 
-<div
-  class="text-center container sm:text-left px-5 sm:px-0 box-border w-screen pt-10 pb-8 lg:pt-15 sm:pb-5 select-none flex flex-col justify-between mx-auto h-2/3 sm:flex-row items-center"
->
-  <div>
-    <h2 class="font-lighter text-lg lg:text-xl xl:text-2xl opacity-75">
-      C. H. Perlin's Unnecessary Blog
-    </h2>
-    <h1 class="text-6xl lg:text-7xl xl:text-8xl">The P.U.B.</h1>
-  </div>
-  <div class="flex h-full sm:self-end">
-    <h3 class="opacity-75 text-5xl sm:text-4xl lg:text-6xl">{page}</h3>
-  </div>
-</div>
+<header class="font-serif py-20">
+  <a href="/" class="w-fit flex flex-col items-center mx-auto">
+    <p class="text-[1.125rem] sm:text-[1.35rem] text-gray-200">
+      {BLOG_TITLE}
+    </p>
+    <h1 class="text-6xl sm:text-7xl w-fit">{BLOG_ACRONYM}</h1>
+  </a>
+  <nav aria-label="Social media links">
+    <ul class="flex w-full justify-center mt-3">
+      {
+        SOCIALS.map((social) => (
+          <li class="border-l border-l-gray-300 first:border-0 px-2">
+            <a
+              class="underline underline-offset-3 sm:text-lg text-gray-300 hover:text-white transition-colors"
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

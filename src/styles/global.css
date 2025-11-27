@@ -10,6 +10,24 @@
 
 body {
   scroll-behavior: smooth;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-image: radial-gradient(
+    circle,
+    var(--color-gray-800) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  background-position: 0 calc(var(--parallax-y, 0) * -1);
 }
 
 body::-webkit-scrollbar {
@@ -30,4 +48,205 @@ body::-webkit-scrollbar-thumb {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+
+.container {
+  width: 100%;
+  @media (width >= 40rem /* 640px */) {
+    max-width: 40rem /* 640px */;
+  }
+  @media (width >= 48rem /* 768px */) {
+    max-width: 48rem /* 768px */;
+  }
+}
+
+/* Markdown Content Styling - GitHub-inspired */
+.markdown-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-gray-100);
+}
+
+.markdown-content > * + * {
+  margin-top: 1em;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--color-gray-50);
+}
+
+.markdown-content h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--color-gray-700);
+}
+
+.markdown-content h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--color-gray-800);
+}
+
+.markdown-content h3 {
+  font-size: 1.25em;
+}
+
+.markdown-content h4 {
+  font-size: 1em;
+}
+
+.markdown-content h5 {
+  font-size: 0.875em;
+}
+
+.markdown-content h6 {
+  font-size: 0.85em;
+  color: var(--color-gray-400);
+}
+
+.markdown-content p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.markdown-content a {
+  color: var(--color-blue-400);
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+.markdown-content code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: var(--color-gray-800);
+  border-radius: 6px;
+  font-family: ui-monospace, monospace;
+}
+
+.astro-code {
+  background-color: var(--color-gray-950) !important;
+}
+
+.markdown-content pre {
+  padding: 1em;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--color-gray-900);
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-700);
+}
+
+.markdown-content pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  font-size: 100%;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+}
+
+.markdown-content li {
+  margin-top: 0.25em;
+}
+
+.markdown-content li + li {
+  margin-top: 0.25em;
+}
+
+.markdown-content blockquote {
+  padding: 0 1em;
+  margin: 1em 0;
+  color: var(--color-gray-400);
+  border-left: 0.25em solid var(--color-gray-700);
+}
+
+.markdown-content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.markdown-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 1.5em 0;
+  background-color: var(--color-gray-800);
+  border: 0;
+}
+
+.markdown-content table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.markdown-content table th {
+  font-weight: 600;
+  padding: 6px 13px;
+  border: 1px solid var(--color-gray-700);
+  background-color: var(--color-gray-800);
+}
+
+.markdown-content table td {
+  padding: 6px 13px;
+  border: 1px solid var(--color-gray-700);
+}
+
+.markdown-content table tr {
+  background-color: transparent;
+  border-top: 1px solid var(--color-gray-700);
+}
+
+.markdown-content table tr:nth-child(2n) {
+  background-color: var(--color-gray-900);
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.markdown-content del {
+  text-decoration: line-through;
 }

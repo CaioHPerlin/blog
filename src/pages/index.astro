@@ -2,24 +2,42 @@
 import ArticleLayout from "@/layouts/ArticleLayout.astro";
 import { getCollection } from "astro:content";
 import {
-  organizePostsByHeading,
+  formatDate,
   sortPostsByPublishedAt,
+  filterDraftPosts,
 } from "@/utils/posts.utils";
 
-const posts = (await getCollection("blog")).sort(sortPostsByPublishedAt);
-const postsByHeading = organizePostsByHeading(
-  posts,  ["monthLong", "year"],
-  ", "
+const PAGE_TITLE = "Posts em Destaque";
+
+const posts = (await getCollection("blog", filterDraftPosts)).sort(
+  sortPostsByPublishedAt
 );
 ---
 
-<ArticleLayout page="Sumário">
-  <div class="font-serif tracking-wider text-2xl">
-    {Object.keys(postsByHeading).map((k) => 
-    <h2 class="opacity-75">{k}</h2>
-    <div class="flex flex-col">
-      {postsByHeading[k].map((p) => <a href={p.id}>- {p.data.title}</a>)}
-    </div>
-    )}
+<ArticleLayout pageTitle={PAGE_TITLE}>
+  <div class="flex flex-col gap-5">
+    {
+      posts.map((post) => (
+        <article class="border-b border-b-gray-800 pb-3 last:border-b-0">
+          <h2 class="text-2xl font-serif">
+            <a href={post.id} class="hover:text-gray-300 transition-colors">
+              {post.data.title}
+            </a>
+          </h2>
+          {post.data.description && (
+            <p class="pt-1 text-gray-300">{post.data.description}</p>
+          )}
+          <time
+            class="text-sm pt-2 text-gray-400"
+            datetime={post.data.publishedAt.toISOString()}
+          >
+            {formatDate(post.data.publishedAt)
+              .toUpperCase()
+              .split(" DE ")
+              .join(" ".toUpperCase())}
+          </time>
+        </article>
+      ))
+    }
   </div>
 </ArticleLayout>

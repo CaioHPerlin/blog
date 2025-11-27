@@ -1,17 +1,37 @@
 ---
 import "@fontsource/source-serif-pro";
 import "@/styles/global.css";
+
+interface Props {
+  pageTitle?: string;
+}
+
+const { pageTitle = "Sumário" } = Astro.props;
+
+const TITLE = "The P.U.B." + (pageTitle ? ` | ${pageTitle}` : "");
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{TITLE}</title>
   </head>
-  <body class="bg-gray-800 text-gray-100 font-serif min-h-screen flex flex-col"
-    ><slot />
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <slot />
+    <script>
+      const PARALLAX_SPEED = 0.2;
+
+      const handleParallax = (): void => {
+        const scrollY = window.scrollY;
+        const yPos = scrollY * PARALLAX_SPEED;
+        document.body.style.setProperty("--parallax-y", `${yPos}px`);
+      };
+
+      window.addEventListener("scroll", handleParallax, { passive: true });
+    </script>
   </body>
 </html>
