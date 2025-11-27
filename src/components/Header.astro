@@ -1,30 +1,42 @@
 ---
-const socials: Record<string, string> = {
-  Youtube: "https://www.youtube.com/@caiohperlin",
-  LinkedIn: "https://www.linkedin.com/in/caiohperlin",
-  GitHub: "https://github.com/caiohperlin",
-};
+interface Social {
+  name: string;
+  url: string;
+}
+
+const BLOG_TITLE = "C. H. Perlin's Unnecessary Blog";
+const BLOG_ACRONYM = "The P.U.B";
+
+const SOCIALS: Social[] = [
+  { name: "YouTube", url: "https://www.youtube.com/@caiohperlin" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/caiohperlin" },
+  { name: "GitHub", url: "https://github.com/caiohperlin" },
+];
 ---
 
-<div class="font-serif py-20">
-  <div class="w-fit flex flex-col items-center mx-auto">
-    <h2 class="text-[1.125rem] text-gray-200">
-      C. H. Perlin's Unnecessary Blog
-    </h2>
-    <h1 class="text-6xl w-fit">The P.U.B</h1>
-  </div>
-  <ul class="flex w-full justify-center mt-3">
-    {
-      Object.keys(socials).map((k) => (
-        <li class="border-l border-l-gray-200 first:border-0 px-2">
-          <a
-            class="underline underline-offset-3 text-gray-200"
-            href={socials[k]}
-          >
-            {k}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+<header class="font-serif py-20">
+  <a href="/" class="w-fit flex flex-col items-center mx-auto">
+    <p class="text-[1.125rem] sm:text-[1.35rem] text-gray-200">
+      {BLOG_TITLE}
+    </p>
+    <h1 class="text-6xl sm:text-7xl w-fit">{BLOG_ACRONYM}</h1>
+  </a>
+  <nav aria-label="Social media links">
+    <ul class="flex w-full justify-center mt-3">
+      {
+        SOCIALS.map((social) => (
+          <li class="border-l border-l-gray-300 first:border-0 px-2">
+            <a
+              class="underline underline-offset-3 sm:text-lg text-gray-300 hover:text-white transition-colors"
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

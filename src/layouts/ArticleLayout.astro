@@ -4,17 +4,25 @@ import Header from "@/components/Header.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 interface Props {
-  page?: string;
+  pageTitle?: string;
 }
 
-const { page } = Astro.props;
+const { pageTitle } = Astro.props;
 ---
 
-<BaseLayout>
-  <Header page={page} />
-  <div class="bg-gray-900 px-4 py-5 min-h-screen">
-    {page && <h3 class="text-center text-3xl font-serif pb-5">{page}</h3>}
-    <slot />
-  </div>
-  <Footer />
+<BaseLayout pageTitle={pageTitle}>
+  <Header />
+  <main class="px-5 min-h-screen tracking-wide flex flex-col justify-between">
+    <div class="container mx-auto">
+      {
+        pageTitle && (
+          <h1 class="bg-gray-950/30 border border-gray-500 p-4 border-x-0 text-center text-3xl font-serif font-bold mb-6">
+            {pageTitle}
+          </h1>
+        )
+      }
+      <slot />
+    </div>
+    <Footer />
+  </main>
 </BaseLayout>
