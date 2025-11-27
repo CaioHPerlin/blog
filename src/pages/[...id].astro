@@ -23,7 +23,7 @@ const { title, publishedAt, updatedAt } = post.data;
 ---
 
 <ArticleLayout pageTitle={title}>
-  <article class="prose prose-invert max-w-none">
+  <article>
     <div class="-mt-4 mb-6 text-gray-400 text-sm">
       <time datetime={publishedAt.toISOString()}>
         Publicado em {formatDate(publishedAt)}
@@ -36,6 +36,8 @@ const { title, publishedAt, updatedAt } = post.data;
         )
       }
     </div>
-    <Content />
+    <div class="markdown-content">
+      <Content />
+    </div>
   </article>
 </ArticleLayout>
