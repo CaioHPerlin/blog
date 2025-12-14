@@ -45,6 +45,8 @@ tags:
       - [Gaps, Teclado, Atalhos e Animações](#gaps-teclado-atalhos-e-animações)
       - [Waybar](#waybar)
 
+# Introdução Teórica
+
 ## **Por que Linux?**
 
 Como muitos, também interagi com computadores primeiro a partir do sistema da Microsoft, mas a realidade é que o ambiente Windows não foi projetado tendo o desenvolvedor como público principal. Isso resulta em ferramentas integradas pela metade, ou ainda com mais abstrações bloqueando o caminho, frequentemente você dependerá de camadas adicionais e curativos: WSL, gerenciadores de pacotes externos, emuladores ou adaptações; vários componentes necessários para alcançar o mesmo fluxo natural que sistemas Unix-like oferecem nativamente.
@@ -65,17 +67,19 @@ O **Arch Linux** é uma distribuição independente, minimalista e flexível, co
 
 Para desenvolvimento, esse modelo oferece um equilíbrio entre simplicidade e controle. O sistema não força estruturas rígidas nem impõe camadas de abstração que atrapalham a manutenção. Você monta um ambiente exatamente com as versões, serviços e bibliotecas que precisa e com documentação clara. Isso reduz atrito no dia a dia e evita a sensação de estar trabalhando contra o próprio computador.
 
-O modelo **rolling release** complementa isso: você recebe atualizações contínuas, com versões recentes e compatíveis entre si, evitando o acúmulo de pacotes antigos que costuma gerar o **dependency hell**. Em vez de grandes atualizações que quebram tudo de uma vez, o sistema evolui de forma incremental e síncrona. Para quem desenvolve e precisa de ferramentas atualizadas sem perder estabilidade, esse fluxo é extremamente vantajoso.
+O modelo **rolling release** complementa isso: você recebe atualizações contínuas, com versões recentes e compatíveis entre si, evitando o acúmulo de pacotes antigos que costuma gerar o **dependency hell**. Em vez de grandes atualizações que quebram tudo de uma vez, de forma incremental e síncrona. Para quem desenvolve e precisa de ferramentas atualizadas sem perder estabilidade, esse fluxo é extremamente vantajoso.
 
-## **Arch Wiki**
+### **Arch Wiki**
 
-A **Arch Wiki** é uma das documentações mais completas e respeitadas do mundo Linux. Ela não só cobre o ecossistema do Arch Linux, mas também explica conceitos gerais de sistemas Unix-like que se aplicam a praticamente qualquer distribuição. É um recurso que incentiva autonomia, entendimento profundo do sistema e uma abordagem mais consciente sobre como cada componente funciona.
+A **Arch Wiki** é uma das documentações mais completas e respeitadas do mundo Linux. Ela não só cobre o ecossistema do Arch Linux, mas também explica conceitos gerais de sistemas Unix-like que se aplicam a praticamente qualquer distribuição. É um recurso que incentiva autonomia, entendimento profundo do sistema e uma abordagem mais consciente sobre como cada componente funciona. Também é constantemente atualizada pela comunidade, refletindo as melhores práticas e soluções para problemas comuns. É uma das poucas documentações que realmente capacitam o usuário em poucas páginas, geralmente com explicações claras, exemplos práticos e links para recursos adicionais.
 
-## **Pacman vs Apt**
+### **Pacman vs Apt**
 
-pacman (Arch) e o apt (Debian/Ubuntu) são gerenciadores de pacotes eficientes, mas seguem filosofias distintas. O pacman é rápido, direto e previsível, refletindo o minimalismo do Arch e entregando uma experiência uniforme para a maior parte do ecossistema.
+Pacman é o gerenciador de pacotes padrão do Arch Linux, enquanto o apt é o gerenciador utilizado em distribuições baseadas em Debian, como Ubuntu. Ambos são ferramentas poderosas para instalar, atualizar e gerenciar software, mas possuem filosofias e abordagens distintas.
 
-A diferença prática aparece no fluxo de instalação. Em distribuições baseadas em apt, alguns softwares exigem vários passos adicionais: adicionar repositórios externos, importar chaves GPG, atualizar índices, instalar dependências auxiliares etc. Um exemplo clássico é o Docker, cuja instalação oficial no Ubuntu [envolve vários comandos e configurações extras](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
+O pacman é rápido, direto e previsível, refletindo o minimalismo do Arch e entregando uma experiência uniforme para a maior parte do ecossistema.
+
+A diferença prática aparece no fluxo de instalação. Em distribuições baseadas em apt, alguns softwares exigem vários passos adicionais: adicionar repositórios externos a uma lista, importar chaves GPG, atualizar índices, instalar dependências auxiliares, etc. Um exemplo clássico é o Docker, cuja instalação oficial no Ubuntu [envolve vários comandos e configurações extras](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
 
 No Arch, quase sempre o processo se resume a um único passo, pois os pacotes oficiais já incluem tudo o que o software precisa. No caso do Docker, por exemplo, basta:
 
@@ -90,15 +94,21 @@ sudo systemctl enable --now docker.service
 sudo usermod -aG docker $USER
 ```
 
-Essa simplicidade torna o Arch mais prático e previsível para desenvolvimento.
+Essa simplicidade, na minha opinião, torna o Arch mais prático para desenvolvimento.
 
-## **Arch User Repository (AUR)**
+### **Arch User Repository (AUR)**
 
-O AUR é um repositório comunitário gigantesco que oferece milhares de pacotes extras. Ele não distribui binários: utiliza PKGBUILDs, que são receitas descrevendo exatamente como o pacote deve ser construído localmente. Esse modelo mantém tudo transparente, auditável e fácil de adaptar, além de permitir que qualquer usuário compreenda e modifique o processo de instalação. A combinação Arch + AUR é um dos maiores diferenciais da distro, pois expande de forma impressionante a disponibilidade de software sem comprometer a coesão do sistema.
+O AUR é um repositório comunitário gigantesco que oferece milhares de pacotes extras. Ele não distribui binários: utiliza PKGBUILDs, que são arquivos textuais simples que contêm receitas descrevendo exatamente como o pacote deve ser construído localmente. Esse modelo mantém tudo transparente, auditável e fácil de adaptar, além de permitir que qualquer usuário compreenda e modifique o processo de instalação. A combinação Arch + AUR é um dos maiores diferenciais da distro, pois expande de forma impressionante a disponibilidade de software sem comprometer a coesão do sistema.
+
+Contudo, é importante notar que o AUR deve ser usado com cautela, uma vez que os pacotes não são oficialmente mantidos pela equipe do Arch Linux. Sempre revise o conteúdo dos PKGBUILDs e confie apenas em fontes confiáveis para garantir a segurança do seu sistema. Afinal, é uma faca de dois gumes: sendo aberto à comunidade, também pode ser um vetor para software malicioso se não for utilizado com discernimento. Especialmente em pacotes menos populares, é prudente verificar a reputação do mantenedor e ESPECIALMENTE, o conteúdo do PKGBUILD antes de sair instalando qualquer coisa.
+
+# Instalação
 
 ## **Instalação do Arch Linux com `archinstall`**
 
-A instalação pode ser feita manualmente seguindo o `Installation_guide`, mas para fins de oficina usaremos o instalador interativo **archinstall**, que acelera o processo e entrega uma base limpa e consistente.
+A instalação pode ser feita manualmente seguindo o [Installation_guide](https://wiki.archlinux.org/title/Installation_guide), mas para fins de oficina usaremos o instalador interativo **archinstall**, que acelera o processo e entrega uma base consistente.
+
+Sempre recomendo instalar o Arch através do guia manual pelo menos uma vez, para entender os conceitos fundamentais do sistema e aprender sobre como as coisas são feitas. Contudo, o `archinstall` é uma ferramenta oficial e confiável que pode ser usada para instalações rápidas. Se você pretende usar Arch Linux como sistema principal e se sente inseguro de fazer a instalação manualmente, o `archinstall` é um ótimo caminho. Além disso, ele é altamente customizável, permitindo que você escolha exatamente quais componentes deseja instalar, desde o particionamento do disco até a seleção de pacotes e configurações de rede. Em suma, a única desvantagem é que ele pode não ensinar tanto sobre o funcionamento interno do sistema quanto a instalação manual.
 
 ### **1. Baixar a ISO**
 
@@ -136,7 +146,7 @@ E opcionalmente, por estética:
 - **Color**
 - **ILoveCandy**
 
-Atualize e instale o instalador:
+Atualize o instalador:
 
 ```bash
 pacman -Sy archinstall
@@ -148,7 +158,7 @@ Inicie o script:
 archinstall
 ```
 
-## **Etapas do `archinstall`**
+### **Etapas do `archinstall`**
 
 Selecione as seguintes opções:
 
@@ -173,6 +183,8 @@ Selecione as seguintes opções:
 Confirme tudo e aguarde a instalação. Em seguida, reinicie.
 
 > Dica: para grandes listas de opções, pesquise por substrings com o atalho `/`.
+
+# Configuração
 
 ## **Configurações Pós-Instalação**
 
