@@ -6,3 +6,13 @@ services:
       target: prod
     ports:
       - 3333:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blog.rule=Host(`blog.caioperlin.dev`) || Host(`pub.caioperlin.dev`)"
+      - "traefik.http.routers.blog.entrypoints=websecure"
+      - "traefik.http.routers.blog.tls.certresolver=default"
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
