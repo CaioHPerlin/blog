@@ -1,0 +1,8 @@
+services:
+  blog:
+    container_name: blog
+    build:
+      context: .
+      target: prod
+    ports:
+      - 3333:80
